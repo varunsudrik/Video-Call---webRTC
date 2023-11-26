@@ -1,7 +1,17 @@
 const { Server } = require("socket.io");
-
-const io = new Server(8000, {
+const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+const io = new Server(server, {
   cors: true,
+});
+
+app.get("/test", (req, res) => {
+  res.send("Express route test successful!");
+});
+
+server.listen(8000, () => {
+  console.log("Server is running on port 8000");
 });
 
 const emailToSocketIdMap = new Map();
