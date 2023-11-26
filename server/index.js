@@ -6,7 +6,7 @@ const io = new Server(server, {
   cors: true,
 });
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Express route test successful!");
 });
 
