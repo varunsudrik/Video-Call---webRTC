@@ -1,13 +1,13 @@
 import React, { useState,useCallback } from 'react'
 import { useEffect } from 'react'
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import {useSocket} from '../context/SocketProvider'
 
 function Lobby() {
     const [email, setEmail] =useState('')
     const [room, setRoom] =useState('')
     const socket = useSocket()
+    const navigate = useNavigate();
 
     const handleSubmitForm = useCallback(
         (e) => {
@@ -21,9 +21,10 @@ function Lobby() {
       const handleJoinRoom = useCallback(
         (data) => {
           const { email, room } = data;
-          Navigate(`/room/${room}`);
+          console.log(email, room, 'doooooo')
+          navigate(`/room/${room}`);
         },
-        [Navigate]
+        [navigate]
       );
     
       useEffect(() => {
